@@ -11,10 +11,10 @@
 - Tạo commit cho tất cả các thay đổi và cập nhật repo
 
 ## Danh sách
-- [x] 0x00
-- [ ] 0x01
-- [ ] 0x02
-- [ ] 0x03
-- [ ] 0x04
-- [ ] 0x05
-- [ ] 0x06
+- [x] 0x00 - Tutorial
+- [ ] 0x01 - Encoding
+- [ ] 0x02 - PHP
+- [ ] 0x03 - Basic Auth
+- [ ] 0x04 - Programming
+- [ ] 0x05 - SQli
+- [ ] 0x06 - One-Time Pad
