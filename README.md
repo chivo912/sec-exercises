@@ -1,5 +1,7 @@
 # sec-exercises
 
+> Các bài tập training cho Cyber Security Team
+
 ## Hướng dẫn
 
 - Fork repo về github cá nhân của mình
@@ -12,9 +14,27 @@
 
 ## Danh sách
 - [x] 0x00 - Tutorial
-- [ ] 0x01 - Encoding
+  - [x] Ex 1
+- [x] 0x01 - Encoding
+  - [x] Ex 1
+  - [x] Ex 2
+  - [x] Ex 3
+  - [x] Ex 4
+  - [x] Ex 5
 - [ ] 0x02 - PHP
+  - [ ] Ex 1
+  - [ ] Ex 2
 - [ ] 0x03 - Basic Auth
+  - [ ] Ex 1
+  - [ ] Ex 2
 - [ ] 0x04 - Programming
+  - [x] Ex 1
+  - [ ] Ex 2
+  - [x] Ex 3
 - [ ] 0x05 - SQli
+  - [ ] Ex 1
 - [ ] 0x06 - One-Time Pad
+  - [ ] Ex 1
+- [ ] 0x07 - Javascript
+  - [ ] Ex 1
+  - [ ] Ex 2

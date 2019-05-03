@@ -1,5 +1,5 @@
 # Bài 1
-- Đề bào là thuật toán đổ nước
+- Đề bài là thuật toán đổ nước với 3 bình
 - code được để trong file ```do_Nuoc.py``` trong cùng thư mục solve
 
   ```python
@@ -82,7 +82,7 @@
           b2 = b2 - b3
           string += "2:o_"
     ```
-  - do bước cuối cùng sẽ thừa dấu gạch dưới nên ta sử dụng subString để cắt lấy phần các bước:
+  - do bước cuối cùng sẽ thừa dấu gạch dưới nên ta sử dụng subString để cắt lấy phần phía trước:
     ```python
       string = string[0:len(string)-1]
       return string
@@ -118,7 +118,7 @@
 
 ### + bước 3 :
 - Thực hiện tương tự đến khi nào xuất hiện Flag thì dừng lại
-- Do bắt đầu từ bài 2 trở đi thì nó sẽ dạng để bài:
+- Do bắt đầu từ bài 2 trở đi thì nó sẽ dạng đề bài:
   ```
     14 2: 18
     Correct!
@@ -147,5 +147,68 @@
         print string
         sock.send((string + "\n").encode())
   ```
-
+- Kết quả cuối cùng ta được Flag:
+  ```
+    Congrats, here is your flag
+    matesctf{f1ll_d4t_b0ttl3!}
+  ```
 # Bài 3:
+- Đề bài là sẽ đưa ra một ma trận với các dấu thăng và khoảng trắng. Từ ma trận đó phải đưa ra được phép tính và tính ra kết quả.
+
+#### + Bước 1 :
+ - Từ chuỗi gốc sẽ cắt ra theo từng dòng. Và ý tưởng sẽ là từ các dòng đơn lẻ đó ta đưa chúng về dạng ma trận cho từng số và so sánh với một mẫu có sẵn để đưa ra giá trị của số đố ở dạng số.
+ - Ta nhận thấy mỗi số trong phép toán thường có 2 chữ số và một phép toán ở giữa. Các số các nhau bằng 2 khoảng trắng và kích thước mốĩ số sẽ là 3 cột
+ - Nên ta sẽ chia ma trận thành các khối 5x5 trong đó 3 cột là số và 2 cột là khoảng trắng cứ
+    ```
+      ###  ###         #    #
+      #    #           #    #
+      ###  ###  ###    #    #
+      # #  # #         #    #
+      ###  ###         #    #
+    ```
+  - Sau khi xác định được số hay phép toán ta chỉ việc nối chuỗi cho chúng vào chuỗi kết quả. Rồi sử dụng hàm eval() trong python để thực hiện phép toán.
+#### + Bước 2:
+  - Sau khi đã có ý tưởng ta tiến hành đi vào viết code
+  - Đầu tiên tạo 1 mẫu sẵn các chuỗi bao gồm các số và phép toán theo dạng key-value để sau ta sẽ dùng để so sánh.
+  - Tiếp đến là viết hàm tạo ma trận 5x5 và tìm ra phép toán
+    ```python
+      leng = len(lines[0]) / 5
+    ```
+  - Xác định xem sẽ bao nhiêu khối 5x5
+  - sau khi đã xác định được số lượng khối ta sẽ đi vào xác định số hay phép toán cho từng khối
+    ```python
+      temp.append(lines[n][m * 5:m * 5 + 3])
+    ```
+    ```python
+      for key in dic:
+              if (dic[key] == temp):
+                  result += key
+    ```
+  - Sau khi đã xác định được phép toán sẽ tính toán và trả về giá trị
+    ```python
+      return eval(result)
+    ```
+
+#### + Bước 3:
+- Sau khi đã tạo hàm tính toán xong chúng ta sẽ đến bước tạo socket với server tính toán trả về kết quả cho server đến khi nào thấy cờ sẽ dừng lại
+```python
+  sock = socket()
+  sock.connect(('188.166.218.1', 2016))
+
+  while True:
+    data = sock.recv(10240)
+    print data
+    if "GOOD JOB!" in data :
+      break
+    else:
+      data = sock.recv(10240)
+      print(data)
+      result = caculator_string(data)
+      print result
+      sock.send((str(result) + "\n").encode())
+```
+- Kết quả sẽ thấy 1 chuỗi **"GOOD JOB!"** và bên dưới là 1 ma trận nếu ta zoom thật nhỏ lại sẽ thấy chữ
+
+  ```
+    Flag{such_a_hard_worker}
+  ```
