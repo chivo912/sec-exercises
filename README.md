@@ -23,7 +23,7 @@
   - [x] Ex 5
 - [ ] 0x02 - PHP
   - [ ] Ex 1
-  - [ ] Ex 2
+  - [x] Ex 2
 - [ ] 0x03 - Basic Auth
   - [ ] Ex 1
   - [ ] Ex 2
@@ -31,10 +31,19 @@
   - [x] Ex 1
   - [ ] Ex 2
   - [x] Ex 3
+  - [ ] Ex 4
 - [ ] 0x05 - SQli
   - [ ] Ex 1
 - [ ] 0x06 - One-Time Pad
   - [ ] Ex 1
 - [ ] 0x07 - Javascript
+  - [x] Ex 1
+  - [ ] Ex 2
+- [ ] 0x08 - Networking
+  - [ ] Ex 1
+- [ ] 0x09 - Reverse Engineering
   - [ ] Ex 1
   - [ ] Ex 2
+  - [ ] Ex 3
+  - [ ] Ex 4
+  - [ ] Ex 5

@@ -35,3 +35,7 @@ thì nhập câu trả lời là chuỗi như đáp án (thay `_` bằng số đ
 From `Framgia CTF`
 
 `nc 188.166.218.1 2016`
+
+# Bài 4
+
+File: `algo.c`
