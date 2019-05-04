@@ -1,3 +1,11 @@
+# Bài 1:
+  - sau khi quan sát thì đã phát hiện ra đoạn mã cuối cùng
+    ```php
+      eval(ugqkkci($ssyowfjkl, $cxcejhixho));
+    ```
+- Với `function ugqkkci()` theo như quan sát chính là hàm giải mã của đoạn code đã mã hóa chứa bởi biến `$ssyowfjkl`
+- Bây giờ thay vì eval() ta sẽ echo để nó show ra code bên trong hàm eval() đó sẽ chạy
+- Kết quả là thu được code như trong file `ex01.php`
 # Bài 2:
 - Ta có thể xem được mã nguồn của server
   ```php

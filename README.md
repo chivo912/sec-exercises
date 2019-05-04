@@ -13,37 +13,37 @@
 - Tạo commit cho tất cả các thay đổi và cập nhật repo
 
 ## Danh sách
-- [x] 0x00 - Tutorial
+- [x] [0x00 - Tutorial](0x00)
   - [x] Ex 1
-- [x] 0x01 - Encoding
+- [x] [0x01 - Encoding](0x01)
   - [x] Ex 1
   - [x] Ex 2
   - [x] Ex 3
   - [x] Ex 4
   - [x] Ex 5
-- [ ] 0x02 - PHP
+- [x] [0x02 - PHP](0x02)
   - [ ] Ex 1
   - [x] Ex 2
-- [ ] 0x03 - Basic Auth
+- [x] [0x03 - Basic Auth](0x03)
+  - [x] Ex 1
+  - [x] Ex 2
+- [x] [0x04 - Programming](0x04)
+  - [x] Ex 1
+  - [x] Ex 2
+  - [x] Ex 3
+  - [ ] Ex 4
+- [x] [0x05 - SQli](0x05)
+  - [x] Ex 1
+- [ ] [0x06 - One-Time Pad](0x06)
   - [ ] Ex 1
+- [x] [0x07 - Javascript](0x07)
+  - [x] Ex 1
   - [ ] Ex 2
-- [ ] 0x04 - Programming
+- [x] [0x08 - Networking](0x08)
+  - [x] Ex 1
+- [x] [0x09 - Reverse Engineering](0x09)
   - [x] Ex 1
   - [ ] Ex 2
   - [x] Ex 3
-  - [ ] Ex 4
-- [ ] 0x05 - SQli
-  - [ ] Ex 1
-- [ ] 0x06 - One-Time Pad
-  - [ ] Ex 1
-- [ ] 0x07 - Javascript
-  - [x] Ex 1
-  - [ ] Ex 2
-- [ ] 0x08 - Networking
-  - [ ] Ex 1
-- [ ] 0x09 - Reverse Engineering
-  - [ ] Ex 1
-  - [ ] Ex 2
-  - [ ] Ex 3
   - [ ] Ex 4
   - [ ] Ex 5

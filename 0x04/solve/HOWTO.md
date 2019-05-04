@@ -152,6 +152,58 @@
     Congrats, here is your flag
     matesctf{f1ll_d4t_b0ttl3!}
   ```
+
+# Bài 2:
+- Đề bào là trò chơi Sudoku tìm ra giá trị của các ô đang bị ẩn
+- Thuật toán này đã có rất nhiều trên mạng công việc của chúng ta bây giờ là phải format làm sao cho Input phải phù hợp với hàm.
+ ```python
+    puzzle.read(data.replace('_', '?'))
+    print(data.replace('_', '?'))
+ ```
+- Dữ liệu server gửi:
+  ```
+    _ 3 _ _ _ _ _ _ 8
+    _ _ 4 _ _ _ _ _ _
+    _ _ 7 _ _ _ 3 5 _
+    _ _ _ 1 7 _ _ _ 9
+    5 2 _ _ 6 4 _ 1 _
+    _ _ _ 3 _ _ _ _ _
+    _ _ 1 _ 4 _ _ _ _
+    _ _ _ 6 _ _ 4 2 _
+    _ 8 _ 2 _ 5
+  ```
+- Dữ liệu sau khi format để đưa vào hàm tính toán:
+  ```
+    ? 3 ? ? ? ? ? ? 8
+    ? ? 4 ? ? ? ? ? ?
+    ? ? 7 ? ? ? 3 5 ?
+    ? ? ? 1 7 ? ? ? 9
+    5 2 ? ? 6 4 ? 1 ?
+    ? ? ? 3 ? ? ? ? ?
+    ? ? 1 ? 4 ? ? ? ?
+    ? ? ? 6 ? ? 4 2 ?
+    ? 8 ? 2 ? 5 ? ? ?
+  ```
+- Hàm sau khi tính toán sẽ đưa ra kết quả:
+  ```
+    Solving . . . hard . . . done
+    6 3 2 5 9 7 1 4 8
+    1 5 4 8 3 6 9 7 2
+    8 9 7 4 2 1 3 5 6
+    3 4 6 1 7 2 5 8 9
+    5 2 8 9 6 4 7 1 3
+    7 1 9 3 5 8 2 6 4
+    2 6 1 7 4 9 8 3 5
+    9 7 5 6 8 3 4 2 1
+    4 8 3 2 1 5 6 9 7
+  ```
+
+- Sau khi đã tính toán xong ta sẽ gửi trả server
+- Cứ như vậy đến khi check thấy có flag thì ta dừng lại
+- Flag thu được là :
+  ```
+    Flag{well_done_sudoku_master}
+  ```
 # Bài 3:
 - Đề bài là sẽ đưa ra một ma trận với các dấu thăng và khoảng trắng. Từ ma trận đó phải đưa ra được phép tính và tính ra kết quả.
 

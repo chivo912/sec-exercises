@@ -8,7 +8,7 @@
 + Base-64: `MTIzNA==`
 
 # Bài 2
-- Đang tiến hành viết hàm encode và decode
+- Đã viết hàm encode và decode --> file : encode_decode_64.py
 
 # Bài 3
 - Thấy chuỗi đầu tiền được viết hoa `EBG KVVV` và tra cứu thì được biết đó là ROT 13. Nên sử dụng ROT 13 Onile để giải mã và được đoạn text:`ROT XIII is a simple letter substitution cipher that replaces a letter with the letter XIII letters after it in the alphabet. ROT XIII is an example of the Caesar cipher, developed in ancient Rome. Flag is FLAGSwzgxBJSAMqwxxAU. Insert an underscore immediately after FLAG.` Theo như dịch nghĩa thì Flag là `FLAGSwzgxBJSAMqwxxAU`, chèn thêm dấu gạch dưới vào ngay sau FLAG --> `FLAG_SwzgxBJSAMqwxxAU`
