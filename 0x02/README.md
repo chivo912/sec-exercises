@@ -5,3 +5,11 @@ Tóm tắt lại các bước giải mã và phân tích cách thức hoạt đ�
 # Bài 2
 
 http://ksnctf.sweetduet.info/problem/32
+
+# Bài 3
+
+http://ksnctf.sweetduet.info/problem/31
+
+# Bài 4
+
+http://ksnctf.sweetduet.info/problem/35

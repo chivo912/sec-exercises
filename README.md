@@ -24,6 +24,8 @@
 - [x] [0x02 - PHP](0x02)
   - [ ] Ex 1
   - [x] Ex 2
+  - [x] Ex 3
+  - [x] Ex 4
 - [x] [0x03 - Basic Auth](0x03)
   - [x] Ex 1
   - [x] Ex 2
@@ -36,6 +38,7 @@
   - [x] Ex 1
 - [ ] [0x06 - One-Time Pad](0x06)
   - [ ] Ex 1
+  - [ ] Ex 2
 - [x] [0x07 - Javascript](0x07)
   - [x] Ex 1
   - [ ] Ex 2
