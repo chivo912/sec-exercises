@@ -29,6 +29,71 @@
   ```
 - Thì chuỗi "GoldenTicket2018@flare-on.com" chính là flag
 
+# Bài 2:
+- Ta sẽ sử dụng máy ảo và reverse file bằng phần mềm `ILSpy` để đưa về dạng code bản rõ
+- Ta đã tìm được một đoạn show ra flag
+  ```cs
+    private string GetKey(List<uint> revealedCells)
+    {
+      revealedCells.Sort();
+      Random random = new Random(Convert.ToInt32((revealedCells[0] << 20) | (revealedCells[1] << 10) | revealedCells[2]));
+      byte[] array = new byte[32];
+      byte[] array2 = new byte[32]
+      {245,75,65,142,68,71,100,185,74,127,62,130,231,129,254,243,28,58,103,179,60,91,195,215,102,145,154,27,57,231,241,86
+      };
+      random.NextBytes(array);
+      for (uint num = 0u; num < array2.Length; num++)
+      {
+        array2[num] ^= array[num];
+      }
+      return Encoding.ASCII.GetString(array2);
+    }
+  ```
+- Và một hàm check list các ô mình bấm
+  ```cs
+    private static uint VALLOC_NODE_LIMIT = 30u;
+
+    private static uint VALLOC_TYPE_HEADER_PAGE = 4294966400u;
+
+    private static uint VALLOC_TYPE_HEADER_POOL = 4294966657u;
+
+    private static uint VALLOC_TYPE_HEADER_RESERVED = 4294967026u;
+
+    private uint[] VALLOC_TYPES = new uint[3]
+    {
+      VALLOC_TYPE_HEADER_PAGE,
+      VALLOC_TYPE_HEADER_POOL,
+      VALLOC_TYPE_HEADER_RESERVED
+    };
+
+    private void AllocateMemory(MineField mf)
+    {
+      for (uint num = 0u; num < VALLOC_NODE_LIMIT; num++)
+      {
+        for (uint num2 = 0u; num2 < VALLOC_NODE_LIMIT; num2++)
+        {
+          bool flag = true;
+          uint r = num + 1;
+          uint c = num2 + 1;
+          if (VALLOC_TYPES.Contains(DeriveVallocType(r, c)))
+          {
+            flag = false;
+          }
+          mf.GarbageCollect[num2, num] = flag;
+        }
+      }
+    }
+
+    private uint DeriveVallocType(uint r, uint c)
+    {
+      return ~(r * VALLOC_NODE_LIMIT + c);
+    }
+
+  ```
+- Từ code trên sau khi sửa rồi mã để thành file `ex02.cs` thì kết qủa thu được flag là :
+  ```
+    Ch3aters_Alw4ys_W1n@flare-on.com
+  ```
 # Bài 3:
 - Sau khi revert code file `code.cpython-37.pyc` ta sẽ được một hàm:
     ```python
@@ -125,3 +190,27 @@
   - Hashmap gồm tên file và ký tự ta sẽ thực hiện`get_number` với từng ảnh để đưa ra được một hashmap mới chỉ bao gồm số thực tự là key và value là ký tự từ. Sau đó là sắp xếp(sort) theo key và in ra
 
 => Kết quả thu được là một chuỗi flag: `mor3_awes0m3_th4n_an_awes0me_p0ssum@flare-on.com`
+
+
+# Bài 7:
+- Sau khi reverse lại mã nguồn của file `rightsout.exe` ta sẽ tìm được một hàm `check()` - trong file `ex07.cs`
+- Sửa và bỏ các điều kiện trong hàm đi ta được.
+  ```cs
+    public class Program
+    {
+      public static void Main()
+      {
+        int[] array = new int[8]{1,	7,	16,	11,	14,	19,	20,	18};
+        int[] array2 = new int[33]{85,	111,	117,	43,	104,	127,	117,	117,	33,	110,	99,	43,	72,	95,	85,	85,	94,	66,	120,	98,	79,	117,	68,	83,	64,	94,	39,	65,	73,	32,	65,	72,	51};
+        string text = "";
+        for (int j = 0; j < array2.Length; j++)
+        {
+          text += (char)(array2[j] ^ array[j % array.Length]);
+        }
+        Console.WriteLine(text);
+      }
+    }
+  ```
+- Sử dụng công cụ compile online với C#
+
+==> Ta thu được Flag là : The flag is `FLAG_EhiAfPAAY7JG3UZ2`

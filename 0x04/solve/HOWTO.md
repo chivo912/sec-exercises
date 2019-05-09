@@ -264,3 +264,82 @@
   ```
     Flag{such_a_hard_worker}
   ```
+
+# Bài 4
+- Sau khi đọc mã nguồn ta có thể nhìn ra hướng giải đó chính là tính ngược lại được 4 số  `a,b,c,d` từ các phép so sánh chia dư dưới kia.
+- Đầu tiên sẽ viết một hàm tìm số từ các `số chia` và `phần dư` kia
+  ```python
+    def findByMod(div1, mod1, div2, mod2, div3, mod3):
+    i = 1
+    j = 1
+    k = 1
+    number1 = div1*i+mod1
+    number2 = div2*j+mod2
+    number3 = div3*k+mod3
+    while number1 != number2 or number2 != number3 or number1 != number3:
+      min_number = min(number1,number2,number3)
+      if min_number == number1:
+        i+=1
+      elif min_number == number2:
+        j+=1
+      else:
+        k+=1
+      number1 = div1*i+mod1
+      number2 = div2*j+mod2
+      number3 = div3*k+mod3
+    return number1
+  ```
+- Với `div` là các số chia còn `mod` là phần dư tương ứng như trong mã nguồn
+- Ta sẽ tính đước bốn số trên
+  ```python
+    a = findByMod(3571, 2963 ,2843 , 215, 30243 ,13059 )
+    b = findByMod(80735, 51964 , 8681, 2552, 40624 , 30931)
+    c = findByMod(99892, 92228 , 45629, 1080, 24497 , 12651)
+    d = findByMod(54750, 26981 , 99627, 79040, 84339 , 77510)
+  ```
+- Sau khi đã tính được `a,b,c,d` ta sẽ nhìn vào các biểu thức trong mã nguồn
+  ```c
+    unsigned int a = buf[0] | (buf[4] << 8) | (buf[8] << 16);
+    unsigned int b = buf[1] | (buf[5] << 8) | (buf[9] << 16);
+    unsigned int c = buf[2] | (buf[6] << 8) | (buf[10] << 16);
+    unsigned int d = buf[3] | (buf[7] << 8) | (buf[11] << 16);
+  ```
+- Rút ra được biểu thức tổng quát
+  ```python
+    number = x | y << 8) | (z << 16)
+  ```
+- Việc bây giờ là ta sẽ định nghĩa một hàm để tìm ra cặp 3 số  `x,y,z` thỏa mãn. Ta sẽ khoanh vùng flag sẽ để đọc được sẽ chỉ gồm ký tự đọc được. Ta sẽ cho 3 vòng lặp lồng nhau với phạm vi từ `(32->127)`
+  ```python
+    def findChar(number):
+      for a in range(32,128):
+        for b in range(32,128):
+          for c in range(32,128):
+            if (a | (b << 8) | (c << 16)) == number:
+              return str(chr(a))+str(chr(b))+str(chr(c))
+  ```
+
+- Ta sẽ tính ra được 4 chuỗi
+  ```python
+    a = findChar(a)
+    b = findChar(b)
+    c = findChar(c)
+    d = findChar(d)
+  ```
+- Có một điều là các ký tự không được sắp xếp theo chiều tuần tự như thế này mà như trên biểu thức thì
+  ```c
+    buf[0] | (buf[4] << 8) | (buf[8] << 16)
+    buf[1] | (buf[5] << 8) | (buf[9] << 16)
+    buf[2] | (buf[6] << 8) | (buf[10] << 16)
+    buf[3] | (buf[7] << 8) | (buf[11] << 16)
+  ```
+- Nó sẽ là `0-4-8`, `1-5-9` ,.....
+- Giờ ta đưa nó 4 chuỗi trên vào 1 mảng sau đó chạy vòng lặp 3 lần là lấy từng kí tứ mỗi lần cộng lại
+  ```python
+    arr = [a,b,c,d] # ['W0H', '3M3', 'L3r', 'K_3']
+    result = ""
+    for i in range(3):
+      result += arr[0][i] + arr[1][i] + arr[2][i] + arr[3][i]
+  ```
+- Sẽ lấy đúng theo thứ tự `0-1-2-3`, `4-5-6-7`, `7-8-9-10-11` đúng 3 vòng lặp
+
+==> kết quả flag là : `W3LK0M3_H3r3`
