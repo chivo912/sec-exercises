@@ -82,3 +82,46 @@
 
     >>> just_ascii_to_hex_conv
   ```
+
+
+# Bài 5 :
+- Sau khi nghiêm cứu và tìm hiểu thì đã tìm ra hướng giải cho bài `FLEGGO` này
+#### đối với sử dụng terminal:
+- Thì sẽ sử dụng lệnh `strings -e l [name_file]`. Nó sẽ tìm ra tất cả các ký tự có thể đọc được trong file đó. Và với trường hợp này là password của file
+- Sau khi sử dụng lệnh `strings` để lấy được password trong file thì ta sẽ sử dụng lệnh `wine [name_file]` để chạy file. Do trên môi trường Ubuntu không thể chạy trực tiếp file .exe nên phải sử dụng thông qua công cụ `wine`. Sau khi chạy file lên nó sẽ yêu cầu nhập mật khẩu, sau khi điền mật khẩu đúng thì một ảnh sẽ được sinh ra và một gửi trả bao gồm tên file cùng một ký tự
+- Điều đặc biệt đó là trong ảnh có chứa số thứ tự, từ số thứ tự ảnh ta có thể sắp xếp các ký tự đi cùng ảnh để tạo ra một chuỗi. Chuỗi đó chính là flag
+- Điều đặt ra bây giờ là cần viết ra một tự động chạy các lệnh trên và tự động từ ảnh sẽ sắp xếp sau đó sinh chuỗi kết quả theo thứ tự trong ảnh
+
+#### Viết tool bằng python
+##### * Bước 1:
+  - List ra các file .exe trong thư mục `FLEGGO`, lấy tên của chúng và đưa vào một list để chạy lệnh với từng file
+    ```python
+      def read_name_file():
+        MyOut = subprocess.Popen(['ls','/home/ngo.van.nghia/Documents/Cyber-Sercurity/sec-exercises/0x09/FLEGGO'], stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        stdout,stderr = MyOut.communicate()
+        return stdout.decode("utf-8").strip().split("\n")
+    ```
+
+  - Sau khi đã có các tên file ta sẽ thực hiện chúng với `strings` và `wine` thông qua `subprocess` của python
+    ```python
+      def get_password(name_file):
+        MyOut = subprocess.Popen(['strings', '-e', 'l', '/home/ngo.van.nghia/Documents/Cyber-Sercurity/sec-exercises/0x09/FLEGGO/'+name_file], stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        ...
+
+      def enter_key_gen_image(name_file, password):
+        process = subprocess.Popen(['wine', '/home/ngo.van.nghia/Documents/Cyber-Sercurity/sec-exercises/0x09/FLEGGO/'+name_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        process.stdin.write(password.encode())
+        ...
+    ```
+##### * Bước 2:
+  - Thực hiện lần lượt các file với các hàm trên và kết quả sẽ trả ra một hasmap gồm các tên file ảnh `.png` và ký tự
+  - Bây giờ sẽ sử dụng thư viện OpenCV để chiết xuất số từng trong ảnh ra
+    ```python
+      def get_number(name_img):
+        img = cv2.imread("/home/ngo.van.nghia/Documents/Cyber-Sercurity/sec-exercises/0x09/FLEGGO/"+name_img)
+        cv2.imshow("1123", img)
+        ...
+    ```
+  - Hashmap gồm tên file và ký tự ta sẽ thực hiện`get_number` với từng ảnh để đưa ra được một hashmap mới chỉ bao gồm số thực tự là key và value là ký tự từ. Sau đó là sắp xếp(sort) theo key và in ra
+
+=> Kết quả thu được là một chuỗi flag: `mor3_awes0m3_th4n_an_awes0me_p0ssum@flare-on.com`
